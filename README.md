@@ -1,2 +1,0 @@
-# devansh-collection
-Devansh Collection
