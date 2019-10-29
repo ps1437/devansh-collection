@@ -5,39 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.syscho.app.ProductRepository;
-import com.syscho.model.ProductDO;
+import com.syscho.app.model.ProductDO;
+import com.syscho.app.repository.ProductRepository;
 
 @Service
 public class ProductService {
 
 	@Autowired
-	ProductRepository repository;
+	private ProductRepository repository;
 
 	public List<ProductDO> getProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ProductDO> findAll = repository.findAll();
+		System.out.println("ProductService.getProducts()"+findAll.size());
+		return findAll;
 	}
 
 	public List<ProductDO> getProductsByName(String prodName) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAllByProdName(prodName);
 	}
 
-	public List<ProductDO> getProductsByNumber(String prodNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductDO> getProductsByNumber(String prodId) {
+		return repository.findAllByProdId(prodId);
 	}
 
 	public ProductDO delProduct(ProductDO productDO) {
-		// TODO Auto-generated method stub
+		repository.deleteById(productDO.getId());
 		return null;
 	}
 
 	public ProductDO addProduct(ProductDO productDO) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.save(productDO);
 	}
 
-	
 }

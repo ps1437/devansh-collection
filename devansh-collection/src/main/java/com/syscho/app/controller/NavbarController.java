@@ -1,4 +1,4 @@
-package com.syscho.app.controller;
+/*package com.syscho.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,7 @@ import com.syscho.app.service.ProductService;
 public class NavbarController {
 
 	@Autowired
-	ProductService service;
+	ProductService productService;
 
 	@GetMapping(value = { "/", "/home" })
 	public String home() {
@@ -28,3 +28,4 @@ public class NavbarController {
 	}
 
 }
+*/
