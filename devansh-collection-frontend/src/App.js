@@ -1,15 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import NavBar from './comonent/NavBar';
 
+import React, { Component } from 'react';
+
+import Admin from './component/Admin';
+import DataTable from './component/UI/DataTable';
+import NavBar from './component/UI/NavBar';
 
 class App extends Component {
 
-  render(
-<NavBar/>
+  render( 
     
-  )
+      
+    
+  ){
+    return(
+      <React.Fragment>
+     <Admin/>
+     {/* <DataTable/> */}
+     </React.Fragment>
+    )
+      
+  }
 
 }
 
