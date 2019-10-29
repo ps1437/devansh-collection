@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 
-class Product extends Component{
+class Layout extends Component{
 
     render(){
         return(
             <div>
-                Product
+                Layout
             </div>
         )
     }
 }
-
-
-export default Product;
