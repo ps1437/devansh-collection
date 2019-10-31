@@ -16,7 +16,7 @@ public class ProductService {
 
 	public List<ProductDO> getProducts() {
 		List<ProductDO> findAll = repository.findAll();
-		System.out.println("ProductService.getProducts()"+findAll.size());
+		System.out.println("ProductService.getProducts()" + findAll.size());
 		return findAll;
 	}
 

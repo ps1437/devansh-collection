@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,7 +28,7 @@ public class ProductDO implements Serializable {
 	}
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
 	@Column(name = "PROD_ID")
@@ -42,10 +43,11 @@ public class ProductDO implements Serializable {
 	@Column(name = "PROD_SELL_PRICE")
 	private Long prodSellPrice;
 
-	@OneToMany(mappedBy = "prodFootSize", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "prodFootSize", cascade = CascadeType.ALL, 
+			orphanRemoval = true,
+			fetch = FetchType.EAGER)
 	private Set<ProductSizeDO> productSizeDO;
 
-	
 	public Long getId() {
 		return id;
 	}

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,12 +21,12 @@ public class ProductController {
 	ProductService service;
 
 	@PostMapping("/add")
-	public ProductDO addProduct(ProductDO productDO) {
+	public ProductDO addProduct(@RequestBody ProductDO productDO) {
 		return service.addProduct(productDO);
 	}
 
 	@PostMapping("/delete")
-	public ProductDO delProduct(ProductDO productDO) {
+	public ProductDO delProduct(@RequestBody ProductDO productDO) {
 		return service.delProduct(productDO);
 	}
 
