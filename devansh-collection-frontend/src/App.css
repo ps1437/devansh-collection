@@ -1,13 +1,15 @@
 .App {
   text-align: center;
 }
+body{
+  font-family: cursive !important;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -32,17 +34,10 @@
   }
 }
 
-.paper{
+.paper {
   padding: 10px;
 }
-.makeStyles-formControl{
-  min-width:280px  
+.makeStyles-formControl {
+  min-width: 280px;
 }
 
-.btnCenter{
-  /* margin: 0 !important;
-  position: absolute !important;
-  top: 50% !important;
-  -ms-transform: translateY(-50%) !important;
-  transform: translateY(-50%) !important; */
-}

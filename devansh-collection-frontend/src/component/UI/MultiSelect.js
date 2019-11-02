@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     minWidth: 380,
     maxWidth: 400,
+  
   },
   chips: {
     display: 'flex',
@@ -45,22 +46,22 @@ const names = [
   '11',
   '12'];
 
-function getStyles(name, personName, theme) {
+function getStyles(name, prodSize, theme) {
   return {
     fontWeight:
-      personName.indexOf(name) === -1
+    prodSize.indexOf(name) === -1
         ? theme.typography.fontWeightRegular
         : theme.typography.fontWeightMedium,
   };
 }
 
-export default function MultipleSelect() {
+export default function MultipleSelect(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [prodSize, setProdSize] = React.useState([]);
 
   const handleChange = event => {
-    setPersonName(event.target.value);
+    setProdSize(event.target.value);
   };
 
 
@@ -70,12 +71,12 @@ export default function MultipleSelect() {
 
 
       <FormControl className={classes.formControl}>
-        <InputLabel id="Size-label">Size</InputLabel>
+        <InputLabel id="Size-label">Available Size</InputLabel>
         <Select
           labelId="Size"
           id="Size"
           multiple
-          value={personName}
+          value={prodSize}
           onChange={handleChange}
           input={<Input id="Size-input" />}
           renderValue={selected => (
@@ -88,7 +89,7 @@ export default function MultipleSelect() {
           MenuProps={MenuProps}
         >
           {names.map(name => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+            <MenuItem key={name} value={name} style={getStyles(name, prodSize, theme)}>
               {name}
             </MenuItem>
           ))}
