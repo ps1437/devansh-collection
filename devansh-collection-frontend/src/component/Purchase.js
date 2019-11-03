@@ -1,12 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import axios from 'axios';
 import React from "react";
 import { styles } from "../assets/style/styles";
 import InputField from "./UI/InputField";
 import MultiSelect from "./UI/MultiSelect";
-import Divider from "@material-ui/core/Divider";
 
 const UI = [
   { key: "prodId", label: "Artical No" },
@@ -26,6 +28,7 @@ const prodState = {
 function Purchase() {
   const [product, setProduct] = React.useState(prodState);
   const classes = styles();
+  const dispatch = useDispatch(); //this hook gives us dispatch method
 
   const handleChange = event => {
     const value = event.target.value;
@@ -37,9 +40,24 @@ function Purchase() {
     setProduct({ ...product, 'prodSize':
     [value] });
   }
+  function addData(){
+    return dispatch => {
+      axios.post("http://localhost:9091/product/add",product)
+      .then(res =>{
+        console.log(res);
+        dispatch({
+          type: "GET_PRODUCT",
+          data: res.data
+        })
+      }
+      );
+    }
+  }
   const submitForm =event =>{
     event.preventDefault();
-    console.log(product);
+    dispatch(addData());
+  
+
   }
 
     
