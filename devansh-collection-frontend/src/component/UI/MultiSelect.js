@@ -1,30 +1,28 @@
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-
-import Chip from '@material-ui/core/Chip';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import React from 'react';
-import Select from '@material-ui/core/Select';
+import Chip from "@material-ui/core/Chip";
+import FormControl from "@material-ui/core/FormControl";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 380,
-    maxWidth: 400,
-  
+    maxWidth: 400
   },
   chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   chip: {
-    margin: 2,
+    margin: 2
   },
   noLabel: {
-    marginTop: theme.spacing(3),
-  },
+    marginTop: theme.spacing(3)
+  }
 }));
 
 const ITEM_HEIGHT = 48;
@@ -33,43 +31,24 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
+      width: 250
+    }
+  }
 };
 
-const names = [
-  '6',
-  '7',
-  '8',
-  '10',
-  '11',
-  '12'];
-
-function getStyles(name, prodSize, theme) {
-  return {
-    fontWeight:
-    prodSize.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
-  };
-}
+const names = ["6", "7", "8", "10", "11", "12"];
 
 export default function MultipleSelect(props) {
   const classes = useStyles();
-  const theme = useTheme();
   const [prodSize, setProdSize] = React.useState([]);
 
   const handleChange = event => {
     setProdSize(event.target.value);
+    props.setProdSize(event.target.value);
   };
-
-
 
   return (
     <div>
-
-
       <FormControl className={classes.formControl}>
         <InputLabel id="Size-label">Available Size</InputLabel>
         <Select
@@ -89,14 +68,12 @@ export default function MultipleSelect(props) {
           MenuProps={MenuProps}
         >
           {names.map(name => (
-            <MenuItem key={name} value={name} style={getStyles(name, prodSize, theme)}>
+            <MenuItem key={name} value={name}>
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-
-
     </div>
   );
 }

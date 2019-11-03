@@ -40,9 +40,9 @@ const link = [
 export default function NavBar() {
   const classes = useStyles();
 
-  const navbar = link.map(object => {
+  const navbar = link.map((object,index) => {
     return (
-      <Link to={object.link} className={classes.link}>
+      <Link key ={index*2} to={object.link} className={classes.link}>
        
         | {object.name} 
       </Link>

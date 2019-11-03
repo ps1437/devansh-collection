@@ -3,32 +3,36 @@ import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { styles } from "../Styles/style";
+import { styles } from "../assets/style/styles";
 import InputField from "./UI/InputField";
-//import  AutoSuggestion from  './UI/AutoSuggestion';
+import  Autocomplete from  './UI/AutoComplete';
 import Divider from "@material-ui/core/Divider";
 
 const prodState = {
   prodId: "",
-  prodName: "",
-  proPrice: "",
-  prodSize: [
-    {
-      prodSize: ""
-    }
-  ]
+  // prodName: "",
+  // prodPrice: "",
+  prodSellPrice: "",
+  prodSize: ""
+  
 };
 
 function Invoice() {
   const [product, setProduct] = React.useState(prodState);
   const classes = styles();
 
-  let handleChange = event => {
+  const handleChange = event => {
     const value = event.target.value;
     const name = event.target.name;
-
     setProduct({ ...product, [name]: value });
   };
+  const setArtical =(value)=>{
+       setProduct({ ...product, 'prodId': value });
+  }
+
+  const submitForm=event =>{
+    console.log(product)
+  }
   return (
     <Container maxWidth="sm">
       <Paper className="paper">
@@ -36,8 +40,24 @@ function Invoice() {
           Invoice
         </Typography>
         <Divider />
+        
         <div className={classes.container}>
-          <InputField
+        <Autocomplete
+        setArtical={setArtical}
+        suggestions={[
+          "Alligator",
+          "Bask",
+          "Crocodilian",
+          "Death Roll",
+          "Eggs",
+          "Jaws",
+          "Reptile",
+          "Solitary",
+          "Tail",
+          "Wetlands"
+        ]}
+      />
+          {/* <InputField
             id="articalNo"
             name="prodId"
             value={product.prodId}
@@ -45,11 +65,10 @@ function Invoice() {
             width="350px"
             onChange={handleChange}
           />
-          <br />
+          <br /> */}
           <InputField
-            id="prodSize"
-            name="prodSize"
-            value={product.prodSize}
+            name="prodSellPrice"
+            value={product.prodSellPrice}
             width="350px"
             label="Selling Price:"
             onChange={handleChange}
@@ -57,7 +76,6 @@ function Invoice() {
 
           <br />
           <InputField
-            id="prodSize"
             name="prodSize"
             value={product.prodSize}
             label="Artical Size:"
@@ -69,6 +87,7 @@ function Invoice() {
             <Button
               variant="contained"
               color="primary"
+              onClick={submitForm}
               style={{ justifyContent: "center" }}
             >
               Submit

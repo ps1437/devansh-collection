@@ -12,6 +12,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.syscho.app.model.ProductDO;
 import com.syscho.app.model.ProductSizeDO;
@@ -21,6 +22,7 @@ import com.syscho.app.repository.ProductRepository;
 @ComponentScan(basePackages = { "com.syscho.app.*" })
 @EnableJpaRepositories(basePackages = { "com.syscho.app.repository" })
 @EntityScan("com.syscho.app.model")
+@CrossOrigin(origins = "*")
 public class MainApplication extends SpringBootServletInitializer implements CommandLineRunner {
 
 	@Autowired

@@ -171,11 +171,11 @@ export default function DataTable(props) {
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             .map((row, index) => (
               <TableRow
-                key={row.prodId}
+                key={index}
                 className={index % 2 === 0 ? null : classes.odd}
               >
-                {headers.map((header, p) => (
-                  <TableCell key={p} align="left" className={classes.tableCell}>
+                {headers.map((header, index) => (
+                  <TableCell key={index} align="left" className={classes.tableCell}>
                     {row[header.value]}
                   </TableCell>
                 ))}

@@ -3,48 +3,57 @@ import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { styles } from '../Styles/style';
+import { styles } from "../assets/style/styles";
 import InputField from "./UI/InputField";
 import MultiSelect from "./UI/MultiSelect";
 import Divider from "@material-ui/core/Divider";
 
-const UI =[{'value':'product.prodId','label':'Artical No','name':'prodPrice'},
-            {'value':'product.prodName','label':'Artical Name','name':'prodName'},
-            {'value':'product.prodPrice','label':'Artical Price','name':'prodPrice'},
-          
-            {'value':'product.prodSellPrice','label':'Artical Selling Price','name':'prodSellPrice'}];
+const UI = [
+  { key: "prodId", label: "Artical No" },
+  { key: "prodName", label: "Artical Name" },
+  { key: "prodPrice", label: "Artical Price" },
+  { key: "prodSellPrice", label: "Artical Selling Price" }
+];
 
 const prodState = {
   prodId: "",
   prodName: "",
   prodPrice: "",
   prodSellPrice: "",
-
-  prodSize: [
-    {
-      prodSize: ""
-    }
-  ]
+  prodSize: [  ]
 };
 
 function Purchase() {
   const [product, setProduct] = React.useState(prodState);
   const classes = styles();
 
-  let handleChange = event => {
+  const handleChange = event => {
     const value = event.target.value;
     const name = event.target.name;
-
     setProduct({ ...product, [name]: value });
   };
-  let uiComponent =UI.map(object =>{
-                          return (<InputField
-                          name={object.name}
-                          value={object.value}
-                          width="350px"
-                          label={object.label}
-                          onChange={handleChange}
-                          />)});
+
+  const setProdSize =value =>{
+    setProduct({ ...product, 'prodSize':
+    [value] });
+  }
+  const submitForm =event =>{
+    event.preventDefault();
+    console.log(product);
+  }
+
+    
+  let uiComponent = UI.map(object => {
+    return (
+      <InputField
+        name={object.key}
+        value={product[object.key]}
+        width="350px"
+        label={object.label}
+        onChange={handleChange}
+      />
+    );
+  });
   return (
     <Container maxWidth="sm">
       <Paper className="paper">
@@ -54,15 +63,18 @@ function Purchase() {
         <Divider />
 
         <div className={classes.container}>
-        {uiComponent}
+          {uiComponent}
           <br />
 
-          <MultiSelect size={product.size} />
+          <MultiSelect
+          setProdSize={setProdSize}
+          size={product.size} />
           <div className="btnCenter">
-            <br/>
+            <br />
             <Button
               variant="contained"
               color="primary"
+              onClick={submitForm}
               style={{ justifyContent: "center" }}
             >
               Submit

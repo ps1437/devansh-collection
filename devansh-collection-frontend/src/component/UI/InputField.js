@@ -25,7 +25,10 @@ export default function InputField(props) {
   return (
 
     <TextField
-      id={props.id}
+      id={props.name}
+      name={props.name}
+      value={props.value}
+      onKeyDown={props.onKeyDown}
       className={classes.textField}
       label={props.label}
       onChange={props.onChange}

@@ -1,6 +1,6 @@
-import { Switch } from "@material-ui/core";
-import React from "react";
-import { Route } from "react-router-dom";
+import { Switch } from "./node_modules/@material-ui/core";
+import React from "./node_modules/react";
+import { Route } from "./node_modules/react-router-dom";
 import HomePage from "../component/HomePage";
 import Product from "../component/Product";
 
