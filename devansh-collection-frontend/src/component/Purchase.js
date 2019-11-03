@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import axios from 'axios';
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { styles } from "../assets/style/styles";
 import InputField from "./UI/InputField";
 import MultiSelect from "./UI/MultiSelect";
@@ -26,6 +26,7 @@ const prodState = {
 };
 
 function Purchase() {
+  const productList = useSelector(state => state.data); //this hook gives us redux store state
   const [product, setProduct] = React.useState(prodState);
   const classes = styles();
   const dispatch = useDispatch(); //this hook gives us dispatch method
@@ -55,6 +56,8 @@ function Purchase() {
   }
   const submitForm =event =>{
     event.preventDefault();
+    console.log(productList);
+  
     dispatch(addData());
   
 
