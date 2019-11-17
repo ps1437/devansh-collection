@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       {" "}
-      <Router>
+      <Router basename={process.env.REACT_APP_ROUTER_BASE||''}>
         <NavBar />
         <br />
         <Switch>

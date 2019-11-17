@@ -15,7 +15,6 @@ import com.syscho.app.model.ProductDO;
 import com.syscho.app.service.ProductService;
 
 @RestController
-
 @CrossOrigin(origins="http://localhost:3000")
 @RequestMapping("/product")
 public class ProductController {
